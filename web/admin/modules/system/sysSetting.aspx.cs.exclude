@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DBUtility;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class admin_modules_system_sysSetting : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack) 
+        {
+            bindInfo();
+        }
+        
+    }
+    private void bindInfo() 
+    {
+        string sqlcmd = "select top 1 * from sys_Settings";
+        using (SqlDataReader dataRead = SQLHelper.ExecuteReader(CommandType.Text, sqlcmd, null))
+        {
+            if (dataRead.Read())
+            {
+                if (Convert.ToInt32(dataRead["AppSourceID"]) == 1) 
+                {
+                    liAppSourceStr.Text = "北京福彩网（http://www.bwlc.net/bulletin/keno.html）";
+                    
+                }
+                else if (Convert.ToInt32(dataRead["AppSourceID"]) == 2)
+                {
+                    liAppSourceStr.Text = "360彩票网（http://chart.cp.360.cn/kaijiang/kl8）";
+                }
+
+                txtHttpTimeOut.Text = Convert.ToString(dataRead["httpTimeOut"]);
+                txtMaxReTryCount.Text = Convert.ToString(dataRead["MaxReTryCount"]);
+
+
+            }
+        }
+    }
+    protected void btnFCW_Click(object sender, EventArgs e)
+    {
+        SQLHelper.ExecuteNonQuery(CommandType.Text, "update sys_Settings set AppSourceID=1", null);
+        liShowMsg.Text = "设置成功，将于5分钟内生效";
+        bindInfo();
+    }
+
+    protected void btn360_Click(object sender, EventArgs e)
+    {
+        SQLHelper.ExecuteNonQuery(CommandType.Text, "update sys_Settings set AppSourceID=2", null);
+        liShowMsg.Text = "设置成功，将于5分钟内生效";
+        bindInfo();
+    }
+    protected void btnUpdateSetting_Click(object sender, EventArgs e)
+    {
+        liMsg2.Text = "";
+        try
+        {
+            int httpTimeout = Convert.ToInt32(txtHttpTimeOut.Text);
+            int maxReTryCount = Convert.ToInt32(txtMaxReTryCount.Text);
+            if (httpTimeout > 5000 || httpTimeout < 200) 
+            {
+                liMsg2.Text = "<font color='red'>请求超时时间不合法</font>";
+                return;
+            }
+            else if (maxReTryCount * httpTimeout>10000)
+            {
+                liMsg2.Text = "<font color='red'>超时时间乘以重试次数不能大于10000</font>";
+                return;
+            }
+
+            string sqlcmd = "update sys_Settings set httpTimeOut=" + httpTimeout + ",MaxReTryCount=" + maxReTryCount;
+            SQLHelper.ExecuteNonQuery(CommandType.Text, sqlcmd, null);
+            liMsg2.Text = "设置成功，将于5分钟内生效";
+
+            bindInfo();
+        }
+        catch (Exception ex) 
+        {
+            liMsg2.Text = ex.Message;
+        }
+        
+
+    }
+}

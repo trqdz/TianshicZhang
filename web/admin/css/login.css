@@ -1,0 +1,31 @@
+
+body{background-color:#14a1d6; margin:0px; font-size:14px; font-family:"microsoft yahei";}
+.topbg{width:947px; height:303px; position:fixed;  background:url(../images/top_bg.png) no-repeat top center; left:50%; top:0; margin-left:-470px;}
+
+.loginbox{width:480px; height:280px; background-color:#39b6e4; position:fixed; top:150px; left:50%; border-radius:5px; margin-left:-240px;}
+.logintitle{width:354px; height:55px; background:url(../images/login_title.png?3); position:fixed; left:50%; top:90px; margin-left:-177px; z-index:999;}
+.loginbox .innerBox{width:470px; height:270px; margin:5px; background-color:#ffffff; border-radius:5px; float:left;}
+.loginbox .innerBox .form{padding:30px 50px; width:370px; float:left;}
+.loginbox .innerBox .form .txtPanel{width:100%; height:auto;  float:left;}
+.loginbox .innerBox .form .btnPanel{width:100%; height:auto; padding-top:20px; float:left;}
+.loginbox .innerBox .form .txtPanel .li{width:370px; margin-top:10px; line-height:32px; float:left;}
+.loginbox .innerBox .form .txtPanel .li span{ padding-right:10px; color:#999999; float:left;}
+.loginbox .innerBox .form .errorPanel{width:100%; padding-top:20px; color:red; float:left;}
+.loginbox .innerBox .form .errorPanel span{padding-left:50px;}
+.loginbox .innerBox .form .textbox{width:200px; height:30px; line-height:30px; font-size:16px; outline: none;  font-family:"microsoft yahei"; color:#0CA9FE;  border:1px solid #cccccc;  border-radius:5px; padding-left:30px;  float:left;}
+.loginbox .innerBox .form .button{width:80px; height:30px; margin-right:5px; text-align:center; line-height:30px; color:#ffffff;  border:none; border-radius:5px; cursor:pointer; float:left;}
+.loginbox .innerBox .userName{ background:url(../images/icon_userName.png) 5px center no-repeat; }
+.loginbox .innerBox .userPwd{ background:url(../images/icon_Pwd.png) 5px center no-repeat; }
+
+.loginbox .innerBox .btnLogin{ background-color:#f08f00; margin-left:50px; outline: none;}
+.loginbox .innerBox .btnCancel{ background-color:#00b2ee; outline: none;}
+
+
+.safeCode{ width:110px; height:33px;  margin-left:10px; float:left;}
+.safeCode img{ height:33px; border:none; float:left; cursor:pointer;}
+
+
+
+.footer{width:500px; height:auto; line-height:30px; color:#eeeeee; text-align:center; position:fixed; bottom:50px; left:50%; margin-left:-250px;}
+
+

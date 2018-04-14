@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="safeCodePic.aspx.cs" Inherits="Inc_safeCodePic" %>

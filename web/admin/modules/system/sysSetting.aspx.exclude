@@ -1,0 +1,66 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="sysSetting.aspx.cs" Inherits="admin_modules_system_sysSetting" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="../../css/formPage.css" rel="stylesheet" type="text/css" />
+    <style>
+        .btnUpdate {
+            width: 200px;
+            height: 40px;
+            border: none; cursor:pointer; background:#1a8cca; border:1px solid #30c1e5; color:#fff;
+        }
+        .btnUpdate:hover {
+            background:#259ccf;
+        }
+         .btnUpdate2 {
+            width: 120px;
+            height: 32px;
+            border: none; cursor:pointer; background:#1a8cca; border:1px solid #30c1e5; color:#fff;
+        }
+        .btnUpdate2:hover {
+            background:#259ccf;
+        }
+
+        .txtbox {
+            width: 60px; color:green; text-align:center;
+            height: 20px; border:1px solid #1a8cca;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>开奖系统设置</span>
+    </div>
+
+    <form id="form1" runat="server">
+        <div style="padding:10px;">
+            <p style="color:red; font-size:14px;"><font color="#666"><b>当前开奖数据引用地址：</b></font><asp:Literal ID="liAppSourceStr" runat="server"></asp:Literal></p>
+            <p>
+                <asp:Button ID="btnFCW" runat="server" Text="采用北京福彩网数据" cssClass="btnUpdate" OnClick="btnFCW_Click" />
+                <asp:Button ID="btn360" runat="server" Text="采用360彩票网数据" cssClass="btnUpdate" OnClick="btn360_Click"  />
+                <span style="color:green"><asp:Literal ID="liShowMsg" runat="server"></asp:Literal></span>
+            </p>
+            <p style="color:red; font-size:14px;">
+                <font color="#666"><b>http请求超时时间：</b></font>
+                <asp:TextBox ID="txtHttpTimeOut" runat="server" CssClass="txtbox"  ></asp:TextBox>
+                <span style="color:orange">毫秒</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                 <font color="#666"><b>请求失败最大重试次数：</b></font>
+                 <asp:TextBox ID="txtMaxReTryCount" runat="server" CssClass="txtbox"  ></asp:TextBox>
+                <span style="color:orange">次</span>
+                <br/>
+                <font color="#999">(http请求超时时间范围1000~5000，请求失败最大重试次数范围：0~3)</font>
+            </p>
+            <p>
+                <asp:Button ID="btnUpdateSetting" runat="server" Text="更新开奖参数" CssClass="btnUpdate2" OnClick="btnUpdateSetting_Click" />
+                <span style="color:green"><asp:Literal ID="liMsg2" runat="server"></asp:Literal></span>
+            </p>
+
+
+        </div>
+    </form>
+</body>
+</html>

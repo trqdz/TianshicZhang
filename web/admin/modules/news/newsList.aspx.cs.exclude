@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class admin_modules_news_newsList : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+       
+        string action = GetStringParam("action");
+        if (action == "getnewslist")
+        {
+            getNewsList();
+        }
+        else if (action == "deletenews")
+        {
+            deleteNews();
+        }
+        else
+        {
+            bindCateList();
+        }
+    }
+
+
+    //批量删除新闻
+    private void deleteNews() 
+    {
+        string delid = GetStringParam("delid");
+        int delCount = BLL.News.DeleteNews(delid);
+        ResponseText(delCount);
+    }
+
+
+
+
+
+    private void bindCateList() 
+    {
+        List<Model.NewsCategory> cateList = BLL.NewsCategory.getCategoryList();
+        repCategry.DataSource = cateList;
+        repCategry.DataBind();
+    }
+
+
+    private void getNewsList()
+    {
+        DTO.News.getNewsList.Request request = new DTO.News.getNewsList.Request()
+        {
+            CategoryId=GetIntParam("categoryid"),
+            Page = new Model.PageInfo()
+            {
+                PageIndex = GetIntParam("page"),
+                PageSize = 10
+            }
+        };
+        DTO.News.getNewsList.Response response = BLL.News.getNewsList(request);
+        ResponseJson(response);
+    }
+}

@@ -1,0 +1,120 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="plSettings.aspx.cs" Inherits="admin_modules_plSettings" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../../js/libs/jquery-1.9.1.min.js"></script>
+    <link  href="../js/fast-js-1.0.1/themes/Fast.css" rel="stylesheet" type="text/css">
+    <link href="../css/formPage.css" rel="stylesheet" type="text/css">
+    <style>
+        .txtpl {
+            width: 60px;
+            height: 26px; text-align:center;
+            border: 1px solid #1a8cca;
+        }
+        .btnmodify{width:auto; height:26px; padding:0px 20px 0px 20px; color:#ffffff; 
+                 line-height:26px; background-color:orange; margin:10px 5px 10px 5px; display:inline-block; cursor:pointer; }
+        .resultTitle {
+            width: 26px;
+            height: 26px; line-height:26px; text-align:center;
+            border-radius: 50%;
+            display: inline-block; background:#1a8cca; color:#fff;
+        }
+    </style>
+    <script>
+
+        $(function () {
+
+
+            //修改赔率
+            $("body").on("click", ".btnmodify", function () {
+
+                var id = $(this).closest("tr").attr("data-id");
+                var pl = $(this).closest("tr").find("input").val();
+                if (/^([1-9]{1}[0-9]?[.]?[0-9]{1,4}|([1-9]{1}[0-9]{0,4}))$/.test(pl) == false)
+                {
+                    window.top.Fast.Alert("赔率输入不合法");
+                    return;
+                }
+
+                window.top.Fast.Confirm({
+                    title: "操作提醒",
+                    content: "确定要修改成目标赔率吗？",
+                    success: function () {
+                        $.ajax({
+                            url: "plSettings.aspx",
+                            data: {
+                                action: "updatepl",
+                                id: id,
+                                pl: pl
+                            },
+                            method: "post",
+                            datatype: "text",
+                            success: function (data) {
+                                window.top.Fast.ShowMsg({
+                                    title: "操作成功",
+                                    content: "<font color=red>修改成功</font>",
+                                    timeout: 3000
+                                });
+                                location.reload();
+                            }
+                        })
+                    }
+                })
+
+            })
+
+        })
+        
+
+    </script>
+
+
+
+</head>
+<body>
+    
+
+    <div class="header">
+        <span>游戏赔率设置</span>
+    </div>
+
+    <div id="divDataPanel">
+        <table class="dataList" >
+            <tr class="trHead">
+                <td>序号</td>
+                <td>所属分类</td>
+                <td>结果名称</td>
+                <td>当前赔率</td>
+                <td>修改赔率</td>
+                <td >操作</td>
+            </tr>
+
+            <asp:Repeater ID="repResultList" runat="server">
+                <ItemTemplate>
+                    <tr class="trli" data-id="<%#Eval("id") %>">
+                        <td><%#Eval("id") %></td>
+                        <td>【<%#Eval("TypeInfo.TypeTitle") %>】</td>
+                        <td>
+                            <span class="resultTitle"><%#Eval("ResultTitle") %></span>
+                        </td>
+                        <td><%#Eval("Pl") %></td>
+                        <td>
+                            <input class="txtpl" value="<%#Eval("Pl") %>"   />
+                        </td>
+                        <td>
+                            <span  class="btnmodify">修改</span>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+            
+        </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

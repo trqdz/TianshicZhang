@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DBUtility;
+using System.Data;
+using System.Data.SqlClient;
+
+
+public partial class admin_modules_resetPwd : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+       // Literal1.Text = Convert.ToString(Session["UserName"]);
+
+        //Model.Admin adminInfo = new Model.Admin();
+
+        string sqlcmd = "select * from Admin where id='" + Session["adminId"] + "'";
+        using (SqlDataReader dataRead = SQLHelper.ExecuteReader(CommandType.Text, sqlcmd, null)) 
+        {
+            if (dataRead.Read()) 
+            {
+                Literal1.Text = Convert.ToString(dataRead["UserName"]);
+            }
+        }
+    }
+
+
+
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+
+
+        string author = (string)DBUtility.SQLHelper.ExecuteScalar(CommandType.Text, "select UserName from Admin where id=" + Session["adminId"], null);
+
+        if (TextBox1.Text.Length < 6)
+        {
+            lErrMsg.Text = "新密码长度不够6位";
+            return;
+        }
+        if (Convert.ToString(TextBox1.Text) != Convert.ToString(TextBox2.Text))
+        {
+            lErrMsg.Text = "两次密码输入不一致";
+            return;
+        }
+
+        int result =0;
+        result = SQLHelper.ExecuteNonQuery(CommandType.Text, "update Admin set UserPWD='" + TextBox1.Text + "' where id='" + Session["adminId"] + "'", null);
+
+
+        if (result < 1)
+        {
+            lErrMsg.Text = "密码修改失败！";
+
+            BLL.EventLog.AddLog(new Model.EventLog()
+            {
+                Author = author,
+                Title = "修改密码",
+                Logdesc = "密码修改失败,IP:" + Request.ServerVariables["REMOTE_ADDR"]
+            });
+            return;
+        }
+        BLL.EventLog.AddLog(new Model.EventLog()
+        {
+            Author = author,
+            Title = "修改密码",
+            Logdesc = "密码修改成功,IP:" + Request.ServerVariables["REMOTE_ADDR"]
+        });
+
+        lErrMsg.Text = "修改成功";
+
+
+    }
+}

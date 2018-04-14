@@ -1,0 +1,124 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="bannerList.aspx.cs" Inherits="admin_modules_bannerList" %>
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="../../scripts/jquery-1.9.1.min.js"></script>
+<link href="../../scripts/fast-js-1.0.1/themes/Fast.css" rel="stylesheet" type="text/css">
+<link href="../css/formPage.css" rel="stylesheet" type="text/css">
+<script src="../../scripts/fast-js-1.0.1/Fast.js"></script>
+<script src="../../scripts/fast-js-1.0.1/Fast.Common.js"></script>
+<script src="../../scripts/fast-js-1.0.1/Fast.Contorls.js"></script>
+<script>
+
+    function Add() {
+        window.top.Fast.Dailog.Show({
+            title: "新增Banner图片",
+            url: "modules/bannerAdd.aspx",
+            width: 600,
+            height: 240,
+            btnList: "btnAdd,btnCancel",
+            callBack: function () {
+                location.reload();
+            }
+        });
+    }
+
+
+    function Edit() {
+        var id = "";
+        $(".dataList input:checked").each(function (index, element) {
+            id += $(this).val() + "|";
+        });
+        if (id.length > 0) {
+            id = id.substring(0, id.length - 1);
+        }
+        else {
+            alert("请选择其中一个进行编辑!");
+            return;
+        }
+        if (id.split("|").length != 1) {
+            alert("请选择其中一个进行编辑!");
+            return;
+        }
+
+        window.top.Fast.Dailog.Show({
+            title: "修改信息",
+            url: "modules/hmEdit.aspx?id=" + id,
+            width: 600,
+            height: 450,
+            btnList: "btnSave,btnCancel",
+            callBack: function () {
+                location.reload();
+            }
+        });
+    }
+
+    function Delete() {
+        var delList = "";
+        $(".dataList input:checked").each(function (index, element) {
+            delList += $(this).val() + ",";
+        });
+        if (delList.length > 0) {
+            delList = delList.substring(0, delList.length - 1);
+        }
+        Fast.Confirm({
+            content: "确定删除所选" + delList.split(",").length + "张图片？将无法恢复",
+            success: function () {
+                var request = "action=delete&delList=" + delList;
+                var resp = new Fast.Ajax().Get(request, location.href, "post");
+                location.reload();
+            }
+        });
+    }
+
+
+</script>
+</head>
+
+<body>
+	<div class="header"><span>Banner图片维护</span></div>
+    <div class="ctrlPanel">
+    	<span class="ctrlBtn" onClick="Add()">新增</span>
+        <span class="ctrlBtn" onClick="Delete()">删除</span>
+    </div>
+	<table class="dataList">
+    	<tr class="trHead">
+        	<td>选择</td>
+            <td>序号</td>
+            <td style="width:90px;">图片地址</td>
+            <td style="width:300px;">标题</td>
+            <td>跳转地址</td>
+        </tr>
+
+<asp:Repeater ID="repUnitList" runat="server" >
+    <ItemTemplate>
+        <tr class="trli">
+        	<td class="tdckb"><span><input type="checkbox" value="<%#Eval("Id") %>" /></span></td>
+            <td class="tdno"><%#Eval("Id") %></td>
+            <td class="imgtd"><span><img src="<%#Eval("imgUrl")%>"/></span></td>
+            <td><%#Eval("Title") %></td>
+            <td><%#Eval("url") %></td>
+        </tr>
+    </ItemTemplate>
+</asp:Repeater>
+
+    </table>
+
+
+
+</body>
+</html>
+
+
+<script>
+    $(".trli").each(function (index, element) {
+        if (index % 2 == 1) {
+            $(this).addClass("lo");
+        }
+    });
+
+
+</script>

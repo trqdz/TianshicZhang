@@ -1,0 +1,81 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="modifyPwd.aspx.cs" Inherits="admin_modules_member_modifyPwd" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../../../js/libs/jquery-1.9.1.min.js"></script>
+    <link href="../../css/formPage.css" rel="stylesheet" type="text/css">
+    <style>
+    	.rechargetable td{ padding:5px 0;}
+    	.bold{font-weight:bold;}
+    	.textbox{width:120px; height:22px; }
+    </style>
+
+<script>
+function DoSave (){
+    
+	var loginpwd=$("#txtLoginPwd").val();
+	var safepwd=$("#txtSafePwd").val();
+
+	if(!loginpwd&&!safepwd){
+		$("#lblerrmsg").html("请输入登录密码或安全密码");
+		return;
+	}
+	$.ajax({
+		url:location.href,
+		data:{
+			action:"modifypwd",
+			loginpwd:loginpwd,
+			safepwd:safepwd
+		},
+		method:"post",
+		datatype:"text",
+		success:function(data){
+			
+			window.top.Fast.ShowMsg({
+				title:"操作成功",
+				content:"<font color=red>密码修改成功</font>",
+				timeout:3000
+			});
+			window.top.Fast.Dailog.Close();
+		}
+
+	})
+}
+
+
+
+</script>
+
+
+
+
+</head>
+<body>
+    <table class="rechargetable">
+
+    	<tr>
+    		<td class="bold">用户编号：</td>
+    		<td><asp:Literal ID="litFormatNO" runat="server"></asp:Literal></td>
+    	</tr>
+    	<tr>
+    		<td class="bold">用户名称：</td>
+    		<td><asp:Literal ID="litUserName" runat="server"></asp:Literal></td>
+    	</tr>
+    	<tr>
+    		<td class="bold">登录密码：</td>
+    		<td><input id="txtLoginPwd" type="text" class="textbox" /></td>
+    	</tr>
+    	<tr>
+    		<td class="bold">安全密码：</td>
+    		<td><input id="txtSafePwd" type="text" class="textbox" /></td>
+    	</tr>
+        <tr>
+            <td colspan="2" id="lblerrmsg" style="color:red"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class admin_modules_news_newsModify : BLL.AdminBasePage
+{
+    public static int activeCategoryId;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string action = GetStringParam("action");
+        if (action == "modify")
+        {
+            ModifyNews();
+        }
+        else
+        {
+            bindNewsInfo();
+        }
+    }
+
+
+    private void ModifyNews() 
+    {
+        Model.News newsInfo = new Model.News();
+        newsInfo.Id = GetIntParam("id");
+        newsInfo.Title = GetStringParam("title");
+        newsInfo.NewsContent = Server.UrlDecode(GetStringParam("content"));
+        newsInfo.CategoryInfo = new Model.NewsCategory();
+        newsInfo.CategoryInfo.CateId = GetIntParam("cateid");
+        int result = BLL.News.ModifyNewsInfo(newsInfo);
+        ResponseText(result);
+    }
+    private void bindCateList()
+    {
+        List<Model.NewsCategory> cateList = BLL.NewsCategory.getCategoryList();
+        repCategry.DataSource = cateList;
+        repCategry.DataBind();
+    }
+    private void bindNewsInfo() 
+    {
+
+        bindCateList();
+        int newsId = GetIntParam("id");
+        Model.News newsInfo = BLL.News.getNewsDetail(newsId);
+        txtTitle.Value = newsInfo.Title;
+        NewsContent.Value = newsInfo.NewsContent;
+
+        activeCategoryId = newsInfo.CategoryInfo.CateId;
+
+
+    }
+}

@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DBUtility;
+using System.Data;
+using System.Data.SqlClient;
+public partial class admin_modules_bannerAdd : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string action = Convert.ToString(Request["action"]);
+        if (action == "add")
+        {
+            this.Add();
+        }
+    }
+
+    private void Add()
+    {
+        string Title = Convert.ToString(Request["Title"]);
+        string imageUrl = Convert.ToString(Request["ImageUrl"]);
+        string url = Convert.ToString(Request["url"]);
+        string sqlcmd = "insert into Banners ([Title],imgUrl,url) values ";
+        sqlcmd += "('" + Title + "','" + imageUrl + "','" + url + "') ";
+        int result = SQLHelper.ExecuteNonQuery(CommandType.Text, sqlcmd, null);
+        Response.Write(result);
+        Response.End();
+
+    }
+}

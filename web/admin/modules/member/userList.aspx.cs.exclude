@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class admin_modules_member_userList : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string action = Request["action"];
+        if (action == "getuserlist")
+        {
+            getUserList();
+        }
+        else if (action == "deleteuser") 
+        {
+            deleteUser();
+        }
+    }
+
+
+    //批量删除会员
+    private void deleteUser() 
+    {
+        string delid = GetStringParam("delid");
+        int delCount = BLL.Member.DeleteUser(delid);
+        ResponseText(delCount);
+
+    }
+    private void getUserList() 
+    {
+        DTO.Member.getUserList.Request request = new DTO.Member.getUserList.Request()
+        {
+            Keyword =GetStringParam("keyword"),
+            Page = new Model.PageInfo() {
+                PageIndex=GetIntParam("page"),
+                PageSize=6
+            }
+        };
+        DTO.Member.getUserList.Response response = BLL.Member.getUserList(request);
+        ResponseJson(response);
+    }
+
+
+}

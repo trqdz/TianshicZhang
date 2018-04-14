@@ -1,0 +1,113 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="newsModify.aspx.cs" Inherits="admin_modules_news_newsModify" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../../../js/libs/jquery-1.9.1.min.js"></script>
+    <script src="../../../js/ckeditor/ckeditor.js"></script>
+    <link href="../../css/formPage.css" rel="stylesheet" type="text/css">
+
+
+<script>
+
+    var activeCateId = "<%=activeCategoryId%>";
+    window.onload = function () {
+        CKEDITOR.replace('NewsContent', {
+            width: 530,
+            height: 220,
+            language: "zh-cn",
+            uiColor: '#8dd3f0',
+            toolbar:
+            [
+                ['Source', 'Bold', 'Link', 'Unlink', 'FontSize', 'TextColor', 'Table', 'Font']
+            ]
+        });
+
+        $("#selcategory").val(activeCateId);
+    }
+
+    
+    function DoSave() {
+
+
+
+        var content = encodeURIComponent(CKEDITOR.instances['NewsContent'].getData());
+        if ($("#txtTitle").val() == "") {
+
+            $("#diverrmsg").html("请输入新闻标题");
+            return;
+        }
+        if (content == "") {
+
+            $("#diverrmsg").html("请输入新闻内容");
+            return;
+        }
+
+
+
+        $.ajax({
+            url:location.href,
+            data: {
+                action: "modify",
+                title: $("#txtTitle").val(),
+                content: content,
+                cateid: $("#selcategory").val()
+            },
+            method: "post",
+            datatype: "text",
+            success: function (data) {
+                window.top.Fast.ShowMsg({
+                    title: "操作成功",
+                    content: "<font color=red>新闻修改成功</font>",
+                    timeout: 3000
+                });
+                window.top.Fast.Dailog.Close();
+            }
+
+        })
+    }
+
+
+
+</script>
+
+
+</head>
+<body>
+
+     <div class="dailogForm">
+    	<div  id="form" >
+    	<table class="layTable">
+        	<tr>
+            	<td>新闻标题:</td>
+                <td><input id="txtTitle" runat="server" type="text" class="txtbox" style="width:530px;" /></td>
+            </tr>
+            <tr>
+                <td>所属分类:</td>
+                <td>
+                    <select id="selcategory" class="sel" style="width:150px; height:26px; border:1px solid #1a8cca">
+                        <asp:Repeater ID="repCategry" runat="server">
+                            <ItemTemplate><option value="<%#Eval("CateId") %>"><%#Eval("CateName") %></option></ItemTemplate>
+                        </asp:Repeater>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <table  class="layTable">
+        	<tr>
+            	<td>新闻内容:</td>
+                <td colspan="3">
+                	<textarea class="txtarea" style="width:510px;"  id="NewsContent" runat="server"></textarea>
+                </td>
+            </tr>
+        </table>
+         <div id="diverrmsg" style="padding:10px; color:red;"></div>
+    </div>
+
+
+</body>
+</html>

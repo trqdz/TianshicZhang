@@ -1,0 +1,52 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="resetPwd.aspx.cs" Inherits="admin_modules_resetPwd" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+<style>
+
+body{margin:20px; font-family:"微软雅黑";}
+table td{padding:10px 0px 10px 0px;}
+*{font-size:12px;}
+ .title{width:100px; height:24px; padding-right:5px;  text-align:right;}
+.li .textpanel{width:auto; float:left;}
+.text{width:160px; height:22px; line-height:22px; border:1px solid #dddddd; float:left;}
+.button{ cursor:pointer;}
+</style>   
+    
+    
+    
+</head>
+<body>
+	
+    <form id="form1" runat="server">
+    	<table style="width:100%">
+        	<tr>
+            	<td class="title">用户名</td>
+                <td><asp:Literal ID="Literal1" runat="server"></asp:Literal></td>
+            </tr>
+            <tr>
+            	<td class="title">新密码</td>
+                <td> <asp:TextBox ID="TextBox1" runat="server" CssClass="text" TextMode="Password"></asp:TextBox></td>
+            </tr>
+            <tr>
+            	<td class="title">确认新密码</td>
+                <td><asp:TextBox ID="TextBox2" runat="server" CssClass="text" TextMode="Password"></asp:TextBox></td>
+            </tr>
+            <tr>
+            	<td class="title"></td>
+                <td> 
+                    <asp:Button ID="btnUpdate" runat="server" Text="修改密码" CssClass="button" OnClick="btnUpdate_Click" />
+                   <span style="padding-left:20px; color:red"><asp:Literal ID="lErrMsg" runat="server" ></asp:Literal></span> 
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
+
+

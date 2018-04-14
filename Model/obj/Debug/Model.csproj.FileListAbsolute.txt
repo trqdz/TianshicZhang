@@ -1,0 +1,15 @@
+D:\2017项目\suanming\BLL\bin\Debug\BLL.dll
+D:\2017项目\suanming\BLL\bin\Debug\BLL.pdb
+D:\2017项目\suanming\BLL\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\2017项目\suanming\BLL\obj\Debug\BLL.dll
+D:\2017项目\suanming\BLL\obj\Debug\BLL.pdb
+D:\2017项目\suanming\Model\bin\Debug\Model.dll
+D:\2017项目\suanming\Model\bin\Debug\Model.pdb
+D:\2017项目\suanming\Model\obj\Debug\Model.dll
+D:\2017项目\suanming\Model\obj\Debug\Model.pdb
+D:\2017项目\suanming\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\2018项目\suanming\Model\bin\Debug\Model.dll
+D:\2018项目\suanming\Model\bin\Debug\Model.pdb
+D:\2018项目\suanming\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\2018项目\suanming\Model\obj\Debug\Model.dll
+D:\2018项目\suanming\Model\obj\Debug\Model.pdb

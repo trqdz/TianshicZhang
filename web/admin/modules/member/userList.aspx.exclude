@@ -1,0 +1,74 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="userList.aspx.cs" Inherits="admin_modules_member_userList" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../../../js/libs/jquery-1.9.1.min.js"></script>
+    <link  href="../../js/fast-js-1.0.1/themes/Fast.css" rel="stylesheet" type="text/css">
+    <link href="../../css/formPage.css" rel="stylesheet" type="text/css">
+    <script src="../../js/fast-js-1.0.1/Fast.js"></script>
+    <script src="userList.js"></script>
+
+    <script id="tplDataHtml"  type="text/template">
+        <table class="dataList">
+            <tr class="trHead">
+                <td>选择</td>
+                <td style="width:100px; ">用户头像</td>
+                <td style="width:100px; ">用户编号</td>
+                <td>用户名</td>
+                <td>昵称</td>
+                <td>手机号</td>
+                <td>QQ号码</td>
+                <td>金币余额</td>
+                <td style="width:100px;">最后登录时间</td>
+                <td style="width:130px;">操作</td>
+            </tr>
+            {{listHtml}}
+        </table>
+    </script>
+
+    <script id="tplItemHtml"  type="text/template">
+        <tr class="trli" data-userId="{{UserId}}">
+            <td class="tdckb">
+                <span><input class="ckbselect" type="checkbox" /></span>
+            </td>
+
+            <td><span><img src="{{UserImage}}" /></span></td>
+            <td>{{FormatNO}}</td>
+            <td>{{UserName}}</td>
+            <td>{{NickName}}</td>
+            <td>{{Mobile}}</td>
+            <td>{{QQ}}</td>
+            <td>{{PointTotal}}</td>
+            <td>{{LastLoginDate}}</td>
+            <td >
+                <span class="btnctrl btnRecharge">充值</span>
+                <span class="btnctrl btnModifyPwd">改密</span>
+                <span class="btnctrl btnDeleteOne">删除</span>
+            </td>
+        </tr>
+    </script>
+
+</head>
+<body>
+
+    <div class="header">
+        <span>会员信息维护</span>
+    </div>
+    <div class="ctrlPanel">
+        <div class="texpanel">
+            <span class="txttitle">搜索会员:</span>
+            <input id="txtkeyword" class="txtsearch" placeholder="输入用户名或手机号" />
+            <span id="btnSearch"  class="btnsearch">搜索</span>
+        </div>
+        <div class="texpanel" style="padding-left:30px;">
+            <span id="btnSelectAll" class="ctrlBtn">全选</span>
+            <span id="btnToggleSelect" class="ctrlBtn">反选</span>
+            <span id="btnDelete" class="ctrlBtn" >批量删除</span>
+        </div>
+    </div>
+    <div id="divDataPanel"></div>
+    <div class="pager"></div>
+</body>
+</html>

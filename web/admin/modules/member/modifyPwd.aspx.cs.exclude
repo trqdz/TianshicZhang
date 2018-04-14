@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class admin_modules_member_modifyPwd : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        bindInfo();
+        string action = GetStringParam("action");
+        if (action == "modifypwd")
+        {
+            modifyPwd();
+        }
+    }
+
+    private void modifyPwd() 
+    {
+        Model.Member memberInfo = new Model.Member()
+        {
+            MemberId = GetIntParam("id"),
+            LoginPwd=GetStringParam("loginpwd"),
+            SafePwd=GetStringParam("safepwd")
+        };
+        BLL.Member.modifyPwd(memberInfo);
+        ResponseText("ok");
+    }
+
+
+
+    private void bindInfo()
+    {
+        int userId = GetIntParam("id");
+        Model.Member userInfo = BLL.Member.getMemberInfo(userId).MemberInfo;
+       
+        litFormatNO.Text = userInfo.FormatNO;
+        litUserName.Text = userInfo.UserName;
+
+    }
+}

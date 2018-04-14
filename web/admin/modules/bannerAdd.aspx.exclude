@@ -1,0 +1,80 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="bannerAdd.aspx.cs" Inherits="admin_modules_bannerAdd" %>
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="../css/formPage.css" rel="stylesheet" type="text/css">
+<script src="../../scripts/ckeditor/ckeditor.js"></script>
+<link href="../../scripts/fast-js-1.0.1/themes/Fast.css" rel="stylesheet" type="text/css">
+<script src="../../scripts/fast-js-1.0.1/Fast.js"></script>
+<script src="../../scripts/fast-js-1.0.1/Fast.Common.js"></script>
+<script src="../../scripts/fast-js-1.0.1/Fast.Contorls.js"></script>
+</head>
+<body>
+
+<div class="dailogForm">
+    	<div  id="form" >
+    	<table class="layTable">
+
+            <tr>
+            	<td width="60">图片名称</td>
+              <td colspan="3"><input type="text" class="txtbox" style="width:430px;" name="Title" /></td>
+            </tr>
+            <tr>
+            	<td>连接地址</td>
+                <td width="240" ><input type="text" class="txtbox" style="width:240px;" name="url" /></td>
+                <td width="60"  rowspan="2">图片地址</td>
+                <td  rowspan="2">
+                	<div class="s-pricture">
+                        <div id="pictureBox" class="imgBox"></div>
+                        <div class="ctrlAdd" onClick="ShowUploadBox()">更换</div>
+                   		<div class="ctrlDel" onClick="this.parentNode.children[1].innerHTML='';this.parentNode.children[0].value='';">删除</div>
+                        <div id="uploadBox" class="uploadBox">
+                            <iframe src="../fileUpload.aspx" style="width:100%; height:100%;" frameborder="0"></iframe>
+                        </div>    
+                    </div>
+                </td>
+            </tr>
+            <tr>
+              <td >图片地址</td>
+              <td><textarea type="text" class="txtarea" style="width:240px; height:50px;" id="ImageUrl" name="ImageUrl" ></textarea></td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+
+    //上传回调函数
+    function FileUploadCallBack(file) {
+        g$("pictureBox").innerHTML = "<img src='" + file + "' />";
+        g$("ImageUrl").value = file;
+        g$("uploadBox").style.display = 'none'
+    }
+    function ShowUploadBox() {
+        g$("uploadBox").style.display = 'block'
+        Fast.Common.AfterExitDomById("uploadBox");
+
+    }
+
+
+
+
+    function AddSave() {
+        var request = "action=add&"
+        request += Fast.Common.GetData(g$("form"));
+        var resp = new Fast.Ajax().Get(request, location.href, "post");
+        if (resp == 1) {
+            window.top.Fast.Dailog.Close();
+        }
+    }
+
+
+
+</script>

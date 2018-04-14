@@ -1,0 +1,10 @@
+D:\2017项目\suanming\DBUtility\bin\Debug\DBUtility.dll
+D:\2017项目\suanming\DBUtility\bin\Debug\DBUtility.pdb
+D:\2017项目\suanming\DBUtility\obj\Debug\DBUtility.dll
+D:\2017项目\suanming\DBUtility\obj\Debug\DBUtility.pdb
+D:\2017项目\suanming\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
+D:\2018项目\suanming\DBUtility\bin\Debug\DBUtility.dll
+D:\2018项目\suanming\DBUtility\bin\Debug\DBUtility.pdb
+D:\2018项目\suanming\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
+D:\2018项目\suanming\DBUtility\obj\Debug\DBUtility.dll
+D:\2018项目\suanming\DBUtility\obj\Debug\DBUtility.pdb

@@ -1,0 +1,76 @@
+
+
+
+body{ margin:5px; font-size:14px; font-family:"microsoft yahei"; color:#333333;}
+
+.header{width:100%; height:36px; line-height:36px; margin-top:5px;  background-color:#eeeeee; }
+.header span{padding-left:10px; color:#30c1e5; font-weight:bold;}
+
+.ctrlPanel{border:1px solid #bfe5fa; margin-top:5px; background-color:#fcfcee}
+.ctrlPanel .texpanel{padding:0 10px; display:inline-block; }
+.ctrlPanel .txttitle{color:orange; display:inline-block; }
+.ctrlPanel .pl30{padding-left: 30px;}
+.ctrlPanel .sel{height: 26px; width:150px; border: 1px solid orange; color: orange; display:inline-block; outline: none;}
+.ctrlPanel .txtsearch{width:190px; height: 24px; padding: 0 5px; border: 1px solid orange; color: orange; display:inline-block; outline: none; }
+.ctrlPanel .select{height: 24px;  border: 1px solid orange; color: orange; display:inline-block; outline: none;}
+.ctrlPanel .btnsearch{height: 26px; line-height: 26px; padding: 0px 5px; text-align:center; color: #fff; background-color:orange; display:inline-block; cursor: pointer;}
+.ctrlPanel .ctrlBtn{width:auto; height:26px; padding:0px 20px 0px 20px; color:#ffffff; line-height:26px; background-color:orange; margin:10px 5px 10px 5px; display:inline-block; cursor:pointer; }
+
+
+.dataList{width:100%; border-collapse:collapse; margin-top:10px; border:1px solid #bfe5fa;}
+
+.dataList td{border-collapse:collapse; padding:0px 5px 0px 5px; text-align:center }
+.dataList .trHead{ background-color:#1a8cca !important; color:#ffffff;}
+.dataList tr:nth-child(2n+1){background: #eeeeee;}
+.dataList .trHead td{height:34px; line-height:34px; border-right:1px solid #ffffff; text-align:center }
+.dataList .trHead td:last-child{ border-right:none}
+.dataList .trli{}
+.dataList .trli td{ padding:8px 5px 8px 5px; }
+.dataList .lo{background-color:#f3f2f2}
+.dataList .trli .tdckb{ width:30px; text-align:center;}
+.dataList .trli .mleft{ text-align: left}
+.dataList .trli span{text-align:center;}
+.dataList .trli img{width:60px; height:60px; border:none;}
+.dataList .btnctrl{width:auto; color: #1a8cca; margin: 0px 5px; cursor:pointer; }
+
+
+
+.dailogForm{padding:15px 5px 15px 5px;}
+.dailogForm .txtbox{width:80%; height:22px; line-height:22px; border:1px solid #1a8cca}
+.dailogForm .txtarea{width:80%; height:100px; line-height:22px; border:1px solid #1a8cca; overflow:hidden; overflow-y:auto; font-family:"microsoft yahei";}
+.dailogForm .layTable{width:100%; border:none;}
+.dailogForm .layTable td{padding:8px; white-space:nowrap;}
+.dailogForm .layTable .tdTitle{width:60px;}
+
+
+.s-pricture{ width:90px; height:80px;  position:relative;}
+.s-pricture .imgBox{width:80px; height:60px; padding:4px; border:1px solid #cccccc; background:url(../images/nopic2.png) center center no-repeat;}
+.s-pricture .imgBox img{width:80px; height:60px; border:none; float:left;}
+.s-pricture .ctrlAdd{width:45px; height:20px; background-color:#1a8cca; color:#fff; line-height:20px; text-align:center; cursor:pointer; float:left;}
+.s-pricture .ctrlDel{width:45px; height:20px; background-color:#1a8cca; color:#fff; line-height:20px; text-align:center; cursor:pointer; float:left;}
+.s-pricture .uploadBox{width:280px; height:60px; display:none; border:1px solid #0B9DEC; position:absolute; right:0px; bottom:-74px; background-color:#ffffff;}
+
+
+
+
+
+
+
+/*ckeditor 样式重写*/
+.cke_dialog_ui_text ,.cke_dialog_ui_vbox_child{padding:2px 0px 2px 0px !important;}
+.cke_dialog_ui_labeled_content ,cke_dialog_ui_input_text{width:auto !important; height:24px !important; float:left !important;}
+.cke_dialog_ui_labeled_label{width:60px !important; height:24px !important; line-height:24px !important; float:left !important;}
+.cke_dialog_ui_labeled_content input{width:60px !important; float:left !important;}
+.cke_dialog_ui_input_select{width:60px !important; float:left !important;}
+.cke_dialog_contents{max-height:200px !important}
+.cke_dialog_contents_body {max-height:200px !important; padding:0px 10px 0px 10px !important; background-color:green }
+ .cke_dialog_ui_vbox,.cke_dialog_ui_select{width:190px !important;}
+.cke_dialog_ui_hbox_last ,.cke_dialog_ui_vbox{ width:120px !important}
+.ImagePreviewBox{width:240px !important; height:180px !important; overflow:auto; float:left !important;}
+.cke_dialog_ui_hbox_first{width:100px !important; } 
+.cke_dialog_ui_labeled_content{float:left !important; width:60px !important;}
+.cke_dialog_ui_input_text{width:60px !important; float:left}
+
+.cke_dialog_ui_html{width:208px !important}
+
+

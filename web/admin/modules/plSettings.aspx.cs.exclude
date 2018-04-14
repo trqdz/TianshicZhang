@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class admin_modules_plSettings : BLL.AdminBasePage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string action = GetStringParam("action");
+        if (action == "updatepl")
+        {
+            updatePL();
+        }
+        else
+        {
+            bindDataList();
+        }
+    }
+
+
+    //更新赔率
+    private void updatePL()
+    {
+        Model.App_betResult resultInfo = new Model.App_betResult();
+        resultInfo.Id = GetIntParam("id");
+        resultInfo.Pl = float.Parse(GetStringParam("pl"));
+        int result = BLL.App_betResult.UpdateResultPL(resultInfo);
+        ResponseText(result);
+    }
+
+
+    private void bindDataList()
+    {
+        List<Model.App_betResult> dataList = BLL.App_betResult.getResultList();
+        repResultList.DataSource = dataList;
+        repResultList.DataBind();
+    }
+
+
+}

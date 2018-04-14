@@ -1,0 +1,73 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="newsList.aspx.cs" Inherits="admin_modules_news_newsList" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../../../js/libs/jquery-1.9.1.min.js"></script>
+    <link  href="../../js/fast-js-1.0.1/themes/Fast.css" rel="stylesheet" type="text/css">
+    <link href="../../css/formPage.css" rel="stylesheet" type="text/css">
+    <script src="../../js/fast-js-1.0.1/Fast.js"></script>
+    <script src="newsList.js"></script>
+
+    <script id="tplDataHtml"  type="text/template">
+        <table class="dataList">
+            <tr class="trHead">
+                <td>选择</td>
+                <td>新闻标题</td>
+                <td>所属分类</td>
+                <td>添加时间</td>
+                <td>点击次数</td>
+                <td style="width:130px;">操作</td>
+            </tr>
+            {{listHtml}}
+        </table>
+    </script>
+
+    <script id="tplItemHtml"  type="text/template">
+        <tr class="trli" data-newsId="{{Id}}">
+            <td class="tdckb">
+                <span><input class="ckbselect" type="checkbox" /></span>
+            </td>
+            <td>{{Title}}</td>
+            <td>{{Category}}</td>
+            <td>{{AddedDate}}</td>
+            <td>{{Hits}}</td>
+
+
+            <td >
+                <span class="btnctrl btnEdit">编辑</span>
+                <span class="btnctrl btnDeleteOne">删除</span>
+            </td>
+        </tr>
+    </script>
+</head>
+<body>
+    <div class="header">
+        <span>新闻内容维护</span>
+    </div>
+    <div class="ctrlPanel">
+        <div class="texpanel">
+            <span class="txttitle">新闻类型:</span>
+            <select id="selcategory" class="sel">
+                <asp:Repeater ID="repCategry" runat="server">
+                    <ItemTemplate><option value="<%#Eval("CateId") %>"><%#Eval("CateName") %></option></ItemTemplate>
+                </asp:Repeater>
+            </select>
+            <span id="btnSearch"  class="btnsearch">搜索</span>
+        </div>
+        <div class="texpanel" style="padding-left:30px;">
+            <span id="btnSelectAll" class="ctrlBtn">全选</span>
+            <span id="btnToggleSelect" class="ctrlBtn">反选</span>
+            <span id="btnAdd" class="ctrlBtn" >添加新闻</span>
+            <span id="btnDelete" class="ctrlBtn" >批量删除</span>
+        </div>
+    </div>
+    <div id="divDataPanel"></div>
+    <div class="pager">
+
+    </div>
+</body>
+</html>
