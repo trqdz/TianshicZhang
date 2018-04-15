@@ -1,0 +1,16 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="page.master.cs" Inherits="page" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>张天师算命网</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/libs/zepto.min.js"></script>
+    <script src="js/libs/Util.js"></script>
+</head>
+<body>
+   <asp:ContentPlaceHolder id="bodyContent" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

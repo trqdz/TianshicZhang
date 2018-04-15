@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>XXX算命网</title>
+	<title>张天师算命网</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/libs/zepto.min.js"></script>
     <script src="js/libs/Util.js"></script>

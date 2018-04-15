@@ -1,18 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dashi.aspx.cs" Inherits="dashi" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/page.master" AutoEventWireup="true" CodeFile="dashi.aspx.cs" Inherits="dashi" %>
 <%@ Register Src="~/footer.ascx" TagName="Footer" TagPrefix="asc" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>XXX算命网</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/libs/zepto.min.js"></script>
-    <script src="js/libs/Util.js"></script>
-</head>
-<body>
-	<header>
+<asp:Content ID="Content1" ContentPlaceHolderID="bodyContent" Runat="Server">
+    <header>
         <div class="goback"></div>
         <div class="htitle">咨询大师</div>
 
@@ -46,5 +35,6 @@
 
 	</div>
     <asc:Footer runat="server" ID="ascFooter"  TabName="dashi" />
-</body>
-</html>
+
+</asp:Content>
+
